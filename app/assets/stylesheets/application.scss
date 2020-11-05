@@ -1,0 +1,43 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "defaults";
+@import "components";
+@import "trends";
+
+body {
+  color: $dark;
+  background-color: rgb(231, 231, 231);
+}
+
+nav {
+  color: $dark !important;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+  color: #818181;
+  display: block;
+}
+
+a.active {
+  color: $dark;
+}
+
+a:hover {
+  color: black;
+}
+
+span {
+  font-weight: bold;
+}
+
+div.container {
+  margin: 0 10%;
+
+  div.main {
+    margin-left: 160px;
+    padding: 0px 10px;
+  }
+}

@@ -1,0 +1,33 @@
+div.last-five-starts-wrapper {
+  width: 85%;
+  margin: 0px auto;
+  padding: 2rem 0px;
+  gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  .desc {
+    font-weight: bold;
+  }
+
+  span.game-line,
+  span.highlight {
+    color: $wsbcRed;
+  }
+
+  div.last-five-lines {
+    grid-column: 1 / 2;
+  }
+
+  div.last-five-quick-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 0.025rem solid $wsbcRed;
+    padding: 0px 2rem;
+
+    span.highlight {
+      font-size: 2rem;
+    }
+  }
+}

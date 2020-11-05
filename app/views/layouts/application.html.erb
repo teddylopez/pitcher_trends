@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <%= favicon_link_tag 'favicon-16x16.png' %>
+
+  <title>Pitching Trends</title>
+</head>
+<body>
+
+  <div id="site-wrapper" class="container">
+    <%= render 'shared/nav' %>
+    <%= yield %>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,56 @@
+$lowRisk: #00c851;
+$mediumRisk: #ff8800;
+$highRisk: #ff4444;
+$wsbcRed: rgb(191, 25, 25);
+$dark: #333333;
+
+.low-risk {
+  color: $lowRisk;
+}
+
+.medium-risk {
+  color: $mediumRisk;
+}
+
+.high-risk {
+  color: $highRisk;
+}
+
+.page-block {
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  border-radius: 3px;
+  padding: 0.625rem;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(204, 204, 204);
+  border-image: initial;
+}
+
+.thin-type-header {
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.margin-bottom-small {
+  margin-bottom: 10px !important;
+}
+
+.low-risk {
+  font-weight: bold;
+  color: $lowRisk;
+}
+
+.medium-risk {
+  font-weight: bold;
+  color: $mediumRisk;
+}
+
+.high-risk {
+  font-weight: bold;
+  color: $highRisk;
+}

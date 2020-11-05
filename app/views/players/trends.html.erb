@@ -1,0 +1,91 @@
+<div class="row margin-top-large">
+  <div id="sidebar" class="col-md-2">
+    <%= render 'shared/sidebar' %>
+  </div>
+  <div class="col-md-10">
+    <div class="page-block margin-bottom-small">
+      <h4 class="thin-type-header">Last Five Appearances</h4>
+      <div class="last-five-starts-wrapper">
+        <div class="last-five-lines">
+          <% @last_five_lines.each_with_index do |line, index| %>
+            <div>
+              <span class="game-line">
+              <%= shorten_team_name(line.game.away_team_name) %> @ <%= shorten_team_name(line.game.home_team_name) %>
+              (<%= format_start_time(line.game.starts_at) %>)
+            </span>
+              <span class="<%= style_pitch_count_warning(line.stats['number_of_pitches']) %>" style="padding-left: 1rem;">
+                <%= line.stats['number_of_pitches'] %>
+              </span>
+              <b>pitches</b>
+            </div>
+          <% end %>
+
+          <br>
+
+          <div class="health-risk-scale desc">Health Risk Scale: <span class="low-risk">Low</span>, <span class="medium-risk"">Medium</span>, <span class="high-risk">High</span></div>
+
+        </div>
+        <div class="last-five-quick-stats">
+          <div class="info-container">
+            <span class="highlight">525</span>
+            <span class="desc-text thin-type-header">Total Pitches</span>
+            <br>
+            <span class="highlight">105</span>
+            <span class="desc-text thin-type-header">Pitches / Appearance</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trends-wrapper" data-player-id="<%= @player.id %>">
+      <div id="velo-container" class="page-block margin-bottom-small">
+        <h4 class="thin-type-header">Pitch Velocity By Appearance</h4>
+        <br>
+        <canvas id="velo-chart">
+        </canvas>
+      </div>
+
+      <div id="height-container" class="page-block margin-bottom-small">
+        <h4 class="thin-type-header">Pitch Release Height By Appearance</h4>
+        <br>
+        <canvas id="height-chart">
+        </canvas>
+      </div>
+
+      <div id="extension-container" class="page-block margin-bottom-small">
+        <h4 class="thin-type-header">Pitch Extension By Appearance</h4>
+        <br>
+        <canvas id="extension-chart">
+        </canvas>
+      </div>
+
+      <div id="spin-container" class="page-block margin-bottom-small">
+        <h4 class="thin-type-header">Pitch Spin Rate By Appearance</h4>
+        <br>
+        <canvas id="spin-chart">
+        </canvas>
+      </div>
+
+      <div id="hbreak-container" class="page-block margin-bottom-small">
+        <h4 class="thin-type-header">Pitch Horizontal Break By Appearance</h4>
+        <br>
+        <canvas id="hbreak-chart">
+        </canvas>
+      </div>
+
+      <div id="vbreak-container" class="page-block margin-bottom-small">
+        <h4 class="thin-type-header">Pitch Induced Vertical Break By Appearance</h4>
+        <br>
+        <canvas id="vbreak-chart">
+        </canvas>
+      </div>
+
+      <div id="axis-container" class="page-block margin-bottom-small">
+        <h4 class="thin-type-header">Pitch Spin Axis By Appearance</h4>
+        <br>
+        <canvas id="axis-chart">
+        </canvas>
+      </div>
+    </div>
+  </div>
+</div>
