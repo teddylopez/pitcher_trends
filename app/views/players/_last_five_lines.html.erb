@@ -1,0 +1,33 @@
+<div class="page-block margin-bottom-small">
+  <h4 class="thin-type-header">Last Five Appearances</h4>
+  <div class="last-five-starts-wrapper">
+    <div class="last-five-lines">
+      <% @last_five_lines.each_with_index do |line, index| %>
+        <div>
+          <span class="game-line">
+          <%= abbrev_team(line.game.away_team_name) %> @ <%= abbrev_team(line.game.home_team_name) %>
+          (<%= format_start_time(line.game.starts_at) %>)
+        </span>
+          <span class="<%= style_pitch_count_warning(line.stats['number_of_pitches']) %>" style="padding-left: 1rem;">
+            <%= line.stats['number_of_pitches'] %>
+          </span>
+          <b>pitches</b>
+        </div>
+      <% end %>
+
+      <br>
+
+      <div class="health-risk-scale desc">Health Risk Scale: <span class="low-risk">Low</span>, <span class="medium-risk"">Medium</span>, <span class="high-risk">High</span></div>
+
+    </div>
+    <div class="last-five-quick-stats">
+      <div class="info-container">
+        <span class="highlight">525</span>
+        <span class="desc-text thin-type-header">Total Pitches</span>
+        <br>
+        <span class="highlight">105</span>
+        <span class="desc-text thin-type-header">Pitches / Appearance</span>
+      </div>
+    </div>
+  </div>
+</div>

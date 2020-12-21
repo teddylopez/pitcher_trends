@@ -3,8 +3,8 @@ div.last-five-starts-wrapper {
   margin: 0px auto;
   padding: 2rem 0px;
   gap: 2rem;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: flex;
+  justify-content: center;
 
   .desc {
     font-weight: bold;
@@ -13,10 +13,6 @@ div.last-five-starts-wrapper {
   span.game-line,
   span.highlight {
     color: $wsbcRed;
-  }
-
-  div.last-five-lines {
-    grid-column: 1 / 2;
   }
 
   div.last-five-quick-stats {
@@ -29,5 +25,11 @@ div.last-five-starts-wrapper {
     span.highlight {
       font-size: 2rem;
     }
+  }
+}
+
+@media (max-width: 900px) {
+  div.last-five-starts-wrapper {
+    flex-direction: column;
   }
 }

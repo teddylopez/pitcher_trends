@@ -1,8 +1,6 @@
-$(document).ready(function() {
+$(document).ready(function () {
   if ($(".trends-wrapper").length > 0) {
-    $(".trends-wrapper")
-      .delay(1000)
-      .animate({ opacity: "1" }, 700);
+    $(".trends-wrapper").delay(1000).animate({ opacity: "1" }, 700);
     var playerId = $(".trends-wrapper").data("player-id");
     var dropdown = $("#trends-year-select");
     var chartKey = [
@@ -12,20 +10,20 @@ $(document).ready(function() {
       "spin",
       "hbreak",
       "vbreak",
-      "axis"
+      "axis",
     ];
 
-    $.get("/build_charts", function(response) {
+    $.get("/build_charts", function (response) {
       populateDropdown(dropdown, response["data"]["seasons"]);
 
-      $.each(chartKey, function(index, key) {
+      $.each(chartKey, function (index, key) {
         buildChart(response["data"]["seasons"][0], response, key);
       });
 
-      $("select").change(function() {
+      $("select").change(function () {
         var year = $(this).val();
 
-        $.each(chartKey, function(index, key) {
+        $.each(chartKey, function (index, key) {
           clearChart(key);
           buildChart(year, response, key);
         });
@@ -34,12 +32,8 @@ $(document).ready(function() {
   }
 
   function populateDropdown(dropdown, response) {
-    $.each(response, function(key, entry) {
-      dropdown.append(
-        $("<option></option>")
-          .attr("value", entry)
-          .text(entry)
-      );
+    $.each(response, function (key, entry) {
+      dropdown.append($("<option></option>").attr("value", entry).text(entry));
     });
   }
 
@@ -57,21 +51,22 @@ $(document).ready(function() {
       type: "line",
       data: {
         labels: response["data"]["labels"][year],
-        datasets: buildDatasets(year, response, key)
+        datasets: buildDatasets(year, response, key),
       },
       options: {
+        responsive: true,
         legend: {
           position: "bottom",
-          onHover: function(e) {
+          onHover: function (e) {
             e.target.style.cursor = "pointer";
-          }
+          },
         },
         hover: {
-          onHover: function(e) {
+          onHover: function (e) {
             var point = this.getElementAtEvent(e);
             if (point.length) e.target.style.cursor = "pointer";
             else e.target.style.cursor = "default";
-          }
+          },
         },
         scales: {
           yAxes: [
@@ -79,33 +74,33 @@ $(document).ready(function() {
               scaleLabel: {
                 display: true,
                 labelString: setYAxes(key),
-                fontSize: 17
-              }
-            }
+                fontSize: 17,
+              },
+            },
           ],
           xAxes: [
             {
               scaleLabel: {
                 display: true,
                 labelString: "Game Date",
-                fontSize: 17
+                fontSize: 17,
               },
               type: "time",
               distribution: "linear",
               time: {
                 displayFormats: {
-                  day: "MMM DD, YYYY"
-                }
+                  day: "MMM DD, YYYY",
+                },
               },
               ticks: {
                 autoSkip: true,
-                maxTicksLimit: 20
+                maxTicksLimit: 20,
               },
               gridLines: {
-                display: false
-              }
-            }
-          ]
+                display: false,
+              },
+            },
+          ],
         },
         plugins: {
           colorschemes: {
@@ -116,16 +111,16 @@ $(document).ready(function() {
               "#9933CC",
               "#2BBBAD",
               "#00C851",
-              "#FF8800"
-            ]
-          }
-        }
-      }
+              "#FF8800",
+            ],
+          },
+        },
+      },
     });
 
     function buildDatasets(year, response, key) {
       var output = [];
-      $.each(response["data"]["datasets"][key + "_data"], function(
+      $.each(response["data"]["datasets"][key + "_data"], function (
         index,
         value
       ) {
@@ -142,7 +137,7 @@ $(document).ready(function() {
             lineTension: 0.5,
             borderDashOffset: 1,
             pointRadius: 2,
-            pointHitRadius: 5
+            pointHitRadius: 5,
           });
         }
       });
@@ -157,7 +152,7 @@ $(document).ready(function() {
         spin: "RPM",
         hbreak: "Horizontal Break (Inches)",
         vbreak: "Vertical Break (Inches)",
-        axis: "Axis Degree"
+        axis: "Axis Degree",
       };
       return chart_axes[key];
     }
