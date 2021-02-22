@@ -105,12 +105,12 @@ $(document).ready(function () {
         plugins: {
           colorschemes: {
             scheme: [
-              "#ff4444",
-              "#ffeb3b",
-              "#4285F4",
               "#9933CC",
-              "#2BBBAD",
+              "#ff4444",
+              "#4285F4",
               "#00C851",
+              "#ffeb3b",
+              "#2BBBAD",
               "#FF8800",
             ],
           },

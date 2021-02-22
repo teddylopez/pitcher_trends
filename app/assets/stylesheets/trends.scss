@@ -13,6 +13,7 @@ div.last-five-starts-wrapper {
   span.game-line,
   span.highlight {
     color: $wsbcRed;
+    margin-right: 1rem;
   }
 
   div.last-five-quick-stats {
@@ -24,6 +25,7 @@ div.last-five-starts-wrapper {
 
     span.highlight {
       font-size: 2rem;
+      margin-right: 10px;
     }
   }
 }

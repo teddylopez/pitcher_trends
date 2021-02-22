@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_05_171138) do
+ActiveRecord::Schema.define(version: 2021_02_22_143448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,8 +18,6 @@ ActiveRecord::Schema.define(version: 2020_11_05_171138) do
   create_table "games", force: :cascade do |t|
     t.string "away_team_name"
     t.string "home_team_name"
-    t.jsonb "details", default: {}
-    t.jsonb "boxscore", default: {}
     t.string "starts_at"
     t.string "schedule_date"
     t.datetime "created_at", null: false

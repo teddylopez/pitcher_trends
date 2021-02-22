@@ -4,7 +4,13 @@
 @import "components";
 @import "trends";
 
+html,
 body {
+  overflow-x: hidden;
+}
+
+body {
+  position: relative;
   color: $dark;
   background-color: rgb(231, 231, 231);
 }
@@ -21,8 +27,22 @@ a {
   display: block;
 }
 
-a.active {
-  color: $dark;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+ul {
+  cursor: pointer;
+}
+
+.active {
+  color: $dark !important;
+  font-weight: 400 !important;
 }
 
 a:hover {

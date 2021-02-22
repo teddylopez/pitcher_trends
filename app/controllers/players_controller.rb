@@ -1,5 +1,4 @@
 class PlayersController < ApplicationController
-  include PlayersHelper
   before_action :set_player, only: [:trends, :build_charts]
 
   def trends
@@ -15,7 +14,7 @@ class PlayersController < ApplicationController
   end
 
   def build_charts
-    total_plays = Play.includes(:game).where("pitcher_id = #{@player.id}").order("Games.starts_at ASC").select(:pitch)
+    total_plays = Play.includes(:game).where("pitcher_id = #{@player.id}").order("Games.starts_at ASC")
     appearances = total_plays.pluck(:starts_at).uniq.sort
     season_plays = total_plays.where("Games.starts_at > '#{appearances.first.to_i}' AND Games.starts_at < '#{appearances.first.to_i + 1}'")
 
@@ -32,7 +31,7 @@ class PlayersController < ApplicationController
     data_groups = [velo_data, height_data, extension_data, spin_data, hbreak_data, vbreak_data, axis_data]
 
     season_plays.each do |play|
-      date = play.game.starts_at.to_s.to_date
+      date = play.game.starts_at.to_date
       pitch = translate_pitch_type(play.pitch_type)
       velo = play.pitch_velocity.to_f
       height = play.pitch['releaseData']['releasePosition']['z'].to_f if play.pitch['releaseData']
@@ -46,25 +45,17 @@ class PlayersController < ApplicationController
       # Build hash of organized pitch data:
       unless pitch == nil
         if pitch_hash[pitch].present?
-          if pitch_hash[pitch][:date][date].present?
-            chart_key.each_with_index do |attr, i|
-              pitch_hash[pitch][:date][date][chart_key.keys[i]].push(chart_key.values[i])
-            end
-          else
+          if !pitch_hash[pitch][:date][date].present?
             pitch_hash[pitch][:date][date] = {velo:[], height:[], extension:[], spin:[], hbreak:[], vbreak:[], axis:[]}
-
-            chart_key.each_with_index do |attr, i|
-              pitch_hash[pitch][:date][date][chart_key.keys[i]].push(chart_key.values[i])
-            end
           end
 
         else
           pitch_hash[pitch][:date] = Hash.new { |hash, key| hash[key] = {} }
           pitch_hash[pitch][:date][date] = {velo:[], height:[], extension:[], spin:[], hbreak:[], vbreak:[], axis:[]}
+        end
 
-          chart_key.each_with_index do |attr, i|
-            pitch_hash[pitch][:date][date][chart_key.keys[i]].push(chart_key.values[i])
-          end
+        chart_key.each_with_index do |attr, i|
+          pitch_hash[pitch][:date][date][chart_key.keys[i]].push(chart_key.values[i])
         end
       end
     end
@@ -90,7 +81,6 @@ class PlayersController < ApplicationController
         years.push(date.strftime("%Y"))
         date_labels[date.strftime("%Y")].present? ? date_labels[date.strftime("%Y")].push(d[0]) : date_labels[date.strftime("%Y")] = [d[0]]
 
-        # Average arrays and round to two decimals:
         attr_key = {
           velo: avg_and_round(d[1][:velo]),
           height: avg_and_round(d[1][:height]),

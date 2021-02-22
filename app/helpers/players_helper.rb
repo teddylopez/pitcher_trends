@@ -1,12 +1,9 @@
 module PlayersHelper
-  def format_start_time(time)
-    return time.to_date.strftime("%-m/%-d/%-y")
-  end
 
-  def style_pitch_count_warning(pitch_count)
-    if pitch_count.to_i < 95
+  def style_pitch_count_warning(line)
+    if line.stats['number_of_pitches'].to_i < 95
       return "low-risk"
-    elsif pitch_count.to_i > 90 && pitch_count.to_i < 109
+    elsif line.stats['number_of_pitches'].to_i > 90 && line.stats['number_of_pitches'].to_i < 109
       return "medium-risk"
     else
       return "high-risk"
@@ -48,5 +45,13 @@ module PlayersHelper
     }
 
     return teams[team]
+  end
+
+  def format_start_time(time)
+    return time.to_date.strftime("%-m/%-d/%-y")
+  end
+
+  def matchup_label(line)
+    return "#{abbrev_team(line.game.away_team_name)} @ #{abbrev_team(line.game.away_team_name)} (#{ format_start_time(line.game.starts_at)})"
   end
 end
