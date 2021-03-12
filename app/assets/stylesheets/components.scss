@@ -14,13 +14,18 @@ nav {
     color: white !important;
   }
 
-  div.image-container {
-    a.navbar-brand {
-      padding: 5px;
-    }
+  div.navbar-header {
+    div.image-container {
+      padding-right: 15px;
+      height: 50px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 
-    img {
-      height: 40px;
+      img {
+        height: 33px;
+      }
     }
   }
 
