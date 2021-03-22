@@ -52,6 +52,6 @@ module PlayersHelper
   end
 
   def matchup_label(line)
-    return "#{abbrev_team(line.game.away_team_name)} @ #{abbrev_team(line.game.away_team_name)} (#{ format_start_time(line.game.starts_at)})"
+    return "#{abbrev_team(line.game.away_team_name)} @ #{abbrev_team(line.game.home_team_name)} (#{ format_start_time(line.game.starts_at)})"
   end
 end
